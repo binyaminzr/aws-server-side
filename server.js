@@ -81,7 +81,7 @@ app.post('/setitem', function (req, res) {
 app.post('/upload', function (req, res) {
     var fs = require('fs');
     var data_stream = fs.createReadStream(req.body.filename);
-    var s3 = new AWS.S3({ params: { Bucket: 'lior-upload-bucket', Key: req.body.filename + Date.now() } });
+    var s3 = new AWS.S3({ params: { Bucket: 'beni-upload-bucket', Key: req.body.filename + Date.now() } });
     s3.putObject({ Body: data_stream }, function (err, data) {
         if (err)
             handleError(err, res);
@@ -95,7 +95,7 @@ app.post('/upload', function (req, res) {
 app.post('/getItem', function (req, res) {
     var s3 = new AWS.S3();
    s3.getObject(
-  { Bucket: "aws-saved-photos-lior", Key: req.body.picName},
+  { Bucket: "aws-saved-photos-beni", Key: req.body.picName},
   function (error, data) {
     if (error != null) {
       console.log("Failed to retrieve an object: " + error);
@@ -113,7 +113,7 @@ var upload = multer({
     storage: multerS3({
         acl: 'public-read',
         s3: new AWS.S3(),
-        bucket: 'lior-upload-bucket',
+        bucket: 'beni-upload-bucket',
         key: function (req, file, cb) {
             console.log('file to upload: ' + file.originalname);
             picture = Date.now() + file.originalname;
@@ -158,7 +158,7 @@ var allKeys = [];
 
 // load the data about the saved photos for comparing
 function listAllKeys(token, cb) {
-    var opts = { Bucket: "aws-saved-photos-lior" };
+    var opts = { Bucket: "aws-saved-photos-beni" };
     if (token) opts.ContinuationToken = token;
 
     s3.listObjectsV2(opts, function (err, data) {
@@ -182,13 +182,13 @@ function useRecognitaion() {
         const params2 = {
             SourceImage: {
                 S3Object: {
-                    Bucket: "aws-saved-photos-lior",
+                    Bucket: "aws-saved-photos-beni",
                     Name: image.Key
                 },
             },
             TargetImage: {
                 S3Object: {
-                    Bucket: "lior-upload-bucket",
+                    Bucket: "beni-upload-bucket",
                     Name: picture
                 },
             },
@@ -210,12 +210,12 @@ function useRecognitaion() {
 
 function getData() {
     var docClient = new AWS.DynamoDB.DocumentClient();
-    var table = "celebs";
+    var table = "Employee";
     var celebPhoto = rekData.name;
     var params = {
         TableName: table,
         Key: {
-            "celebPhoto": celebPhoto,
+            "EP": celebPhoto,
         }
     };
 
