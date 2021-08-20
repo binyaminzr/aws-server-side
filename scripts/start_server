@@ -1,5 +1,5 @@
 #!/bin/bash
-cd /home/ec2-user/node-website
+cd /home/ec2-user/express-service
+export PORT=80
 export NODE_ENV=production
-forever start app.js
-service httpd start
+forever start server.js

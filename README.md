@@ -1,7 +1,7 @@
-Welcome to the AWS CodeStar sample web application
-==================================================
+Welcome to the AWS CodeStar sample web service
+==============================================
 
-This sample code helps get you started with a simple Node.js web application
+This sample code helps get you started with a simple Express web service
 deployed by AWS CodeDeploy and AWS CloudFormation to an Amazon EC2 instance.
 
 What's Here
@@ -10,14 +10,13 @@ What's Here
 This sample includes:
 
 * README.md - this file
-* app.js - this file contains the code for your application
+* server.js - this file contains the code for your service
 * appspec.yml - this file is used by AWS CodeDeploy when deploying the web
-  application to EC2
+  service to EC2
 * package.json - this file contains various metadata relevant to your Node.js
-  application such as dependencies
-* public/ - this directory contains static web assets used by your application
+  service such as dependencies
 * scripts/ - this directory contains scripts used by AWS CodeDeploy when
-  installing and deploying your application on the Amazon EC2 instance
+  installing and deploying your service on the Amazon EC2 instance
 * tests/ - this directory contains unit tests for your application
 * template.yml - this file contains the description of AWS resources used by AWS
   CloudFormation to deploy your infrastructure
@@ -26,7 +25,7 @@ This sample includes:
 Getting Started
 ---------------
 
-These directions assume you want to develop on your local computer, and not
+These directions assume you want to develop on  your development environment or a Cloud9 environment, and not
 from the Amazon EC2 instance itself. If you're on the Amazon EC2 instance, the
 virtual environment is already set up for you, and you can start working on the
 code.
@@ -41,18 +40,18 @@ local computer. If you haven't, do that first. You can find instructions in the 
 
         $ npm install
 
-2. Start the development server:
+3. Start the development server:
 
-        $ npm start
+        $ node server.js
 
-3. Open http://127.0.0.1:3000/ in a web browser to view your application.
+4. Open http://127.0.0.1:3000/ in a web browser to view your service.
 
 What Do I Do Next?
 ------------------
 
 Once you have a virtual environment running, you can start making changes to
-the sample Node.js web application. We suggest making a small change to
-/public/index.html first, so you can see how changes pushed to your project's
+the sample Express web service. We suggest making a small change to
+server.js first, so you can see how changes pushed to your project's
 repository are automatically picked up by your project pipeline and deployed to
 the Amazon EC2 instance. (You can watch the progress on your project dashboard.)
 Once you've seen how that works, start developing your own code, and have fun!
@@ -72,7 +71,7 @@ https://docs.aws.amazon.com/codebuild/latest/userguide/concepts.html
 Learn more about AWS CodeStar by reading the user guide.  Ask questions or make
 suggestions on our forum.
 
-User Guide: https://docs.aws.amazon.com/codestar/latest/userguide/welcome.html
+User Guide: http://docs.aws.amazon.com/codestar/latest/userguide/welcome.html
 
 Forum: https://forums.aws.amazon.com/forum.jspa?forumID=248
 
@@ -96,3 +95,4 @@ should also regularly review and apply any available patches or associated secur
 advisories for dependencies used within your application.
 
 Best Practices: https://docs.aws.amazon.com/codestar/latest/userguide/best-practices.html?icmpid=docs_acs_rm_sec
+
