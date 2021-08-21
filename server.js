@@ -21,15 +21,15 @@ app.use(bodyParser.json()); // support JSON-encoded bodies for post
 // test: curl "localhost:8080/getitem?filename=chilkibilki&user=lior"
 app.get('/getitem', function (req, res) {
     var docClient = new AWS.DynamoDB.DocumentClient();
-    var table = "files";
+    var table = "Employee";
     var file_name = req.query.filename;//"chilkibilki";
     var user = req.query.user;//"uri";
     console.log("file " + file_name + " user " + user);
     var params = {
         TableName: table,
         Key: {
-            "file_name": file_name,
-            "user": user
+            "EP": file_name,
+            "e_id": user
         }
     };
 
@@ -65,7 +65,7 @@ app.post('/setitem', function (req, res) {
                 S: "very lucky"
             }
         },
-        TableName: "files"
+        TableName: "Employee"
     };
 
     dynamo.putItem(params, function (err, data) {
