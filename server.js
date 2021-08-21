@@ -20,6 +20,7 @@ app.use(bodyParser.json()); // support JSON-encoded bodies for post
 
 // test: curl "localhost:8080/getitem?filename=chilkibilki&user=lior"
 app.get('/getitem', function (req, res) {
+    
     var docClient = new AWS.DynamoDB.DocumentClient();
     var table = "Employee";
     var file_name = req.query.filename;//"chilkibilki";
