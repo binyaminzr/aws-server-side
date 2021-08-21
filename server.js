@@ -211,12 +211,12 @@ function useRecognitaion() {
 
 function getData() {
     var docClient = new AWS.DynamoDB.DocumentClient();
-    var table = "Employee";
+    var table = "celebs";
     var celebPhoto = rekData.name;
     var params = {
         TableName: table,
         Key: {
-            "EP": celebPhoto,
+            "celebPhoto": celebPhoto,
         }
     };
 
